@@ -1,0 +1,69 @@
+# Imposta la gestione di default per i file di testo.
+* text=auto
+
+# Imposta esplicitamente LF per i file di testo comuni di Unity e scripting.
+# Questo forza la coerenza nel repository.
+*.cs text eol=lf
+*.js text eol=lf
+*.boo text eol=lf
+*.shader text eol=lf
+*.cginc text eol=lf
+*.glslinc text eol=lf
+*.uss text eol=lf
+*.uxml text eol=lf
+*.asmdef text eol=lf
+
+# File di progetto e asset di Unity come testo con finali LF.
+*.unity text eol=lf
+*.asset text eol=lf
+*.prefab text eol=lf
+*.meta text eol=lf
+*.mat text eol=lf
+*.anim text eol=lf
+*.controller text eol=lf
+*.overrideController text eol=lf
+*.preset text eol=lf
+*.spriteatlas text eol=lf
+*.sceneso text eol=lf
+*.inputactions text eol=lf
+
+# Contrassegna i file binari comuni per evitare che Git li modifichi.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.bmp binary
+*.tga binary
+*.tif binary
+*.tiff binary
+*.psd binary
+*.exr binary
+*.ico binary
+*.hdr binary
+
+*.fbx binary
+*.obj binary
+*.blend binary
+*.dae binary
+*.3ds binary
+*.max binary
+*.ma binary
+
+*.ogg binary
+*.wav binary
+*.mp3 binary
+
+*.mp4 binary
+*.mov binary
+*.avi binary
+*.wmv binary
+
+*.a binary
+*.dll binary
+*.so binary
+*.dylib binary
+
+*.pdf binary
+*.zip binary
+*.gz binary
+*.rar binary
