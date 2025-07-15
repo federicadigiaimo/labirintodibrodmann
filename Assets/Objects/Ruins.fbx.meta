@@ -3,7 +3,17 @@ guid: 1091c04d9439a7247946a6a843063290
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: moon_dusted_02_diff_4k
+    second: {fileID: 2800000, guid: 3f842f3ad8ce5ac4dbede91355f80589, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: moon_dusted_02_nor_gl_4k
+    second: {fileID: 2800000, guid: bc3f887a2fde7cd49ab42377a9701537, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
