@@ -2,14 +2,24 @@ using UnityEngine;
 
 public class TriggerZone : MonoBehaviour
 {
-    public GameObject oggettoDaAttivare;
+    public GameObject oggettoDaAttivareVisivo;
+    public GameObject oggettoDaAttivareUditivo;
+
+
+    void Start()
+    {
+        oggettoDaAttivareVisivo.SetActive(false);
+        oggettoDaAttivareUditivo.SetActive(false);
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            oggettoDaAttivare.SetActive(true);
-            Debug.Log("Il giocatore è entrato nell'area!");
+            oggettoDaAttivareVisivo.SetActive(true);
+            oggettoDaAttivareUditivo.SetActive(true);
+            Debug.Log("Il giocatore è entrato nell'area.");
         }
     }
 
@@ -17,7 +27,8 @@ public class TriggerZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            oggettoDaAttivare.SetActive(false);
+            oggettoDaAttivareVisivo.SetActive(false);
+            oggettoDaAttivareUditivo.SetActive(false);
             Debug.Log("Il giocatore è uscito dall'area.");
         }
     }
