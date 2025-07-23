@@ -5,7 +5,6 @@ public class ObjectFlicker : MonoBehaviour
 {
     private Renderer objectRenderer;
 
-    // Puoi modificare questi valori dall'Inspector
     public float minOnTime = 0.1f;
     public float maxOnTime = 0.5f;
     public float minOffTime = 0.05f;
@@ -21,12 +20,12 @@ public class ObjectFlicker : MonoBehaviour
     {
         while (true)
         {
-            // L'oggetto è visibile
+            // L'oggetto visibile
             objectRenderer.enabled = true;
             float onTime = Random.Range(minOnTime, maxOnTime);
             yield return new WaitForSeconds(onTime);
 
-            // L'oggetto è invisibile
+            // L'oggetto invisibile
             objectRenderer.enabled = false;
             float offTime = Random.Range(minOffTime, maxOffTime);
             yield return new WaitForSeconds(offTime);

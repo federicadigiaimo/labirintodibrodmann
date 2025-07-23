@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class VRTeleporter : MonoBehaviour // Rinominato per chiarezza
+public class VRTeleporter : MonoBehaviour
 {
     [Tooltip("L'oggetto vuoto che rappresenta la destinazione (posizione E rotazione).")]
     public Transform destination;
@@ -8,15 +8,19 @@ public class VRTeleporter : MonoBehaviour // Rinominato per chiarezza
     [Tooltip("Il tag dell'oggetto principale del giocatore (es. XR Origin).")]
     private string playerTag = "Player";
 
+
     private void OnTriggerEnter(Collider other)
     {
-        // Troviamo l'oggetto "root" del giocatore. Questo è fondamentale in VR.
-        // Se il trigger viene toccato dalla mano o da un collider figlio,
-        // vogliamo teletrasportare l'intero rig, non solo la mano!
+        Debug.Log("OnTriggerEnter attivato da: " + other.name);
+
         Transform playerRoot = other.transform.root;
+
+        Debug.Log("Oggetto Root rilevato: " + playerRoot.name + " | Tag di questo oggetto: '" + playerRoot.tag + "'");
 
         if (playerRoot.CompareTag(playerTag))
         {
+            Debug.Log("Controllo del Tag SUPERATO. Procedo al teletrasporto.");
+
             if (destination == null)
             {
                 Debug.LogError("Destinazione non impostata! Assegna un Transform nello script VRTeleporter.");
@@ -25,31 +29,24 @@ public class VRTeleporter : MonoBehaviour // Rinominato per chiarezza
 
             TeleportPlayer(playerRoot.gameObject);
         }
+        else
+        {
+            Debug.LogError("ERRORE: Il controllo del Tag è FALLITO. L'oggetto root non ha il tag '" + playerTag + "'.");
+        }
     }
 
     private void TeleportPlayer(GameObject playerRigObject)
     {
-        // Cerchiamo il CharacterController sul rig principale.
         CharacterController cc = playerRigObject.GetComponent<CharacterController>();
 
-        // Disabilitiamo temporaneamente il controller per evitare conflitti.
         if (cc != null)
         {
             cc.enabled = false;
         }
-
-        // --- LA LOGICA CHIAVE DEL TELETRASPORTO ---
-
-        // Spostiamo la POSIZIONE del rig del giocatore.
         playerRigObject.transform.position = destination.position;
 
-        // Impostiamo la ROTAZIONE del rig del giocatore.
-        // Questo allinea il "davanti" del giocatore con il "davanti" della destinazione.
         playerRigObject.transform.rotation = destination.rotation;
 
-        // -----------------------------------------
-
-        // Riabilitiamo il Character Controller dopo il teletrasporto.
         if (cc != null)
         {
             cc.enabled = true;

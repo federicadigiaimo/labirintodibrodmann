@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class OrbitaAttornoAPunto : MonoBehaviour
 {
-    public Transform centro;         // Punto attorno al quale orbitare
-    public float velocità = 50f;     // Velocità di rotazione in gradi/secondo
-    public float durata = 5f;        // Durata dell'orbita
+    public Transform centro;
+    public float velocità = 50f;
+    public float durata = 5f;
 
     private float timer = 0f;
 

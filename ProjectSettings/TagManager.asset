@@ -27,7 +27,7 @@ TagManager:
   - LocoText
   - QDSUITextInputField
   - SamplesInfoPanel
-  - QDSUIToggleCheckboxRadio
+  - PlayerHand
   layers:
   - Default
   - TransparentFX

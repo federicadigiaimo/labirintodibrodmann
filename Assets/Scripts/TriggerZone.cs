@@ -4,10 +4,8 @@ using System.Collections;
 public class ObjectActivatorTrigger : MonoBehaviour
 {
     [Header("Oggetti da Attivare")]
-    [Tooltip("L'oggetto visivo che verrà attivato/disattivato.")]
     public GameObject oggettoVisivo;
 
-    [Tooltip("L'oggetto uditivo (o un altro oggetto) che verrà attivato/disattivato.")]
     public GameObject oggettoUditivo;
 
     [Header("Impostazioni di Attivazione")]
@@ -31,7 +29,6 @@ public class ObjectActivatorTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") && (!singleUse || !hasBeenUsed))
         {
-            // Avvia la coroutine UNA SOLA VOLTA
             StartCoroutine(ActivateAndDeactivate());
 
             if (singleUse)
@@ -43,8 +40,6 @@ public class ObjectActivatorTrigger : MonoBehaviour
 
     private IEnumerator ActivateAndDeactivate()
     {
-        // --- FASE 1: ATTIVAZIONE ---
-        // Attiva ogni oggetto solo se è stato assegnato
         if (oggettoVisivo != null)
         {
             oggettoVisivo.SetActive(true);
@@ -56,11 +51,8 @@ public class ObjectActivatorTrigger : MonoBehaviour
             Debug.Log($"Attivato: {oggettoUditivo.name}");
         }
 
-        // --- FASE 2: ATTESA ---
         yield return new WaitForSeconds(activeDuration);
 
-        // --- FASE 3: DISATTIVAZIONE ---
-        // Disattiva ogni oggetto solo se è stato assegnato
         if (oggettoVisivo != null)
         {
             oggettoVisivo.SetActive(false);
