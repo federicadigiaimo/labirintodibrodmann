@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections; // Necessario per usare le Coroutine (i timer)
 
 public class ActivateObjectAndPlayAudio : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class ActivateObjectAndPlayAudio : MonoBehaviour
     [Tooltip("Il secondo da cui deve iniziare l'audio.")]
     public float startTimeInSeconds = 0f;
 
+    // ----- NUOVA SEZIONE -----
+    [Header("Impostazioni Durata")]
+    [Tooltip("Durata in secondi dell'effetto. Imposta a 0 per non fermarlo mai.")]
+    public float durationInSeconds = 10f; // Default a 10 secondi
+    // -------------------------
+
     [Header("Impostazioni Trigger")]
     [Tooltip("Il tag dell'oggetto che attiva l'evento.")]
     public string triggerTag = "Player";
@@ -18,7 +25,6 @@ public class ActivateObjectAndPlayAudio : MonoBehaviour
 
     void Start()
     {
-        // Controllo di sicurezza all'avvio
         if (objectToActivate == null)
         {
             Debug.LogError("Oggetto da attivare non assegnato!", this.gameObject);
@@ -29,31 +35,45 @@ public class ActivateObjectAndPlayAudio : MonoBehaviour
     {
         if (other.CompareTag(triggerTag) && !hasBeenActivated)
         {
-            // Se l'oggetto non è stato assegnato, non fare nulla
             if (objectToActivate == null) return;
 
-            Debug.Log("Giocatore ha attivato la scena!");
-
-            // 1. Attiva l'intero GameObject (il sistema rotante appare e inizia a girare)
-            objectToActivate.SetActive(true);
-
-            // 2. Trova l'AudioSource all'interno dell'oggetto appena attivato
-            // GetComponentInChildren lo cercherà tra tutti i suoi figli (troverà quello su "OrbitaAudio")
-            AudioSource audio = objectToActivate.GetComponentInChildren<AudioSource>();
-
-            if (audio != null)
-            {
-                // 3. Imposta il tempo di inizio e fai partire l'audio
-                audio.time = startTimeInSeconds;
-                audio.Play();
-            }
-            else
-            {
-                Debug.LogWarning("AudioSource non trovato nell'oggetto attivato!", objectToActivate);
-            }
-
-            // 4. Assicurati che questo evento accada una sola volta
-            hasBeenActivated = true;
+            // Invece di eseguire tutto qui, avviamo la Coroutine che gestisce l'intero ciclo di vita
+            StartCoroutine(ActivateAndDeactivateAfterTime());
         }
     }
+
+    // ----- NUOVA FUNZIONE (LA COROUTINE) -----
+    private IEnumerator ActivateAndDeactivateAfterTime()
+    {
+        // 1. Assicurati che l'evento accada una sola volta
+        hasBeenActivated = true;
+        Debug.Log("Giocatore ha attivato la scena! L'effetto durerà " + durationInSeconds + " secondi.");
+
+        // 2. Attiva l'oggetto e fai partire l'audio (come prima)
+        objectToActivate.SetActive(true);
+        AudioSource audio = objectToActivate.GetComponentInChildren<AudioSource>();
+
+        if (audio != null)
+        {
+            audio.time = startTimeInSeconds;
+            audio.Play();
+        }
+        else
+        {
+            Debug.LogWarning("AudioSource non trovato nell'oggetto attivato!", objectToActivate);
+        }
+
+        // 3. Se la durata è positiva, ASPETTA.
+        // Se la durata è 0 o negativa, il codice si fermerà qui e l'oggetto resterà attivo.
+        if (durationInSeconds > 0)
+        {
+            // Questa è la magia: la funzione si mette in pausa qui per tot secondi senza bloccare il gioco.
+            yield return new WaitForSeconds(durationInSeconds);
+
+            // 4. Dopo aver aspettato, DISATTIVA l'oggetto.
+            Debug.Log("Durata terminata. Disattivo l'oggetto.");
+            objectToActivate.SetActive(false);
+        }
+    }
+    // -----------------------------------------
 }
