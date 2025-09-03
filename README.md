@@ -20,7 +20,7 @@ L'utente è intrappolato in un labirinto a forma di cervello e l'obiettivo è tr
 La realtà virtuale è fondamentale per l'efficacia del concept, amplificando la sensazione di claustrofobia e l'impatto degli elementi horror.
 
 <p align="center">
-  <img src="Images/brain_sx.png" alt="Labirinto dell'emisfero sinistro" width="80%">
+  <img src="Images/brain_sx.png" alt="Labirinto dell'emisfero sinistro" width="70%">
 </p>
 
 ## Caratteristiche Tecniche
