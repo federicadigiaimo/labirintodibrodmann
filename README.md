@@ -68,7 +68,7 @@ The experience is built around VR mechanics to maximize immersion.
 ## Future Developments
 The next crucial step is compiling the final build (.apk) and installing it as a standalone application on the Meta Quest 2 via MQDH. This will allow:
 *   Evaluating the application’s real performance in a native environment.
-*   onitoring metrics such as FPS and CPU/GPU usage without a PC.
+*   Monitoring metrics such as FPS and CPU/GPU usage without a PC.
 *   Validating the effectiveness of the entire optimized development pipeline.
 
 ## Autore
