@@ -1,6 +1,6 @@
 # Il Labirinto di Brodmann
 
-## Descrizione
+## Description
 
 "Il Labirinto di Brodmann" is an immersive puzzle-horror experience developed for the Meta Quest 2 virtual reality platform. The user finds themselves trapped in a surreal maze shaped like a human brain and must find their way out.
 
