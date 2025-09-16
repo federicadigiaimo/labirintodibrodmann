@@ -2,80 +2,74 @@
 
 ## Descrizione
 
-"Il Labirinto di Brodmann" è un'esperienza immersiva di tipo *puzzle horror* sviluppata per la piattaforma di realtà virtuale Meta Quest 2. L'utente si ritrova intrappolato in un labirinto surreale che ha le sembianze di un cervello umano e deve trovare la via d'uscita.
+"Il Labirinto di Brodmann" is an immersive puzzle-horror experience developed for the Meta Quest 2 virtual reality platform. The user finds themselves trapped in a surreal maze shaped like a human brain and must find their way out.
 
-Questo progetto nasce con l'obiettivo di analizzare e definire una pipeline di sviluppo efficiente e ottimizzata per applicazioni VR su hardware mobile. L'intero workflow è basato sull'integrazione di tre strumenti chiave: **Blender** per la modellazione 3D, **Unity** come motore di gioco e l'ecosistema **Meta XR** per lo sviluppo e il testing in tempo reale.
+This project was created with the goal of analyzing and defining an efficient, optimized development pipeline for VR applications on mobile hardware. The entire workflow is based on the integration of three key tools: Blender for 3D modeling, Unity as the game engine, and the Meta XR ecosystem for real-time development and testing.
 
-L'applicazione sfrutta appieno il potenziale immersivo della VR per creare un'esperienza di gioco intensa, ottimizzata per le limitazioni hardware del visore e progettata per prevenire la cinetosi.
+The application fully leverages the immersive potential of VR to create an intense gaming experience, optimized for the hardware limitations of the headset and designed to prevent motion sickness.
 
-![Apertura della scena](Images/scene.png)
+![Opening Scene](Images/scene.png)
 
-## Concept del Gioco
+## Game Concept
+The user is trapped in a brain-shaped maze, and the goal is to find a way out. The layout of the areas and the placement of events have been designed to reflect specific cognitive functions, making the experience not only frightening but also conceptually coherent.
+*   Fear and Anxiety: Associated with the area representing the amygdala.
+*   Disorientation: Located in zones corresponding to the parietal lobe.
 
-L'utente è intrappolato in un labirinto a forma di cervello e l'obiettivo è trovare una via d'uscita. La conformazione delle aree e il posizionamento degli eventi sono stati studiati per rispecchiare specifiche funzioni cognitive, rendendo l'esperienza non solo spaventosa, ma anche concettualmente coerente.
+Virtual reality is fundamental for the effectiveness of the concept, amplifying the feeling of claustrophobia and the impact of horror elements.
+<p align="center"> <img src="Images/brain_sx.png" alt="Left Hemisphere Maze" width="50%"> </p>
 
-*   **Paura e ansia**: Associate all'area che rappresenta l'amigdala.
-*   **Disorientamento**: Posizionato nelle zone che richiamano il lobo parietale.
+## Technical Features
 
-La realtà virtuale è fondamentale per l'efficacia del concept, amplificando la sensazione di claustrofobia e l'impatto degli elementi horror.
+### Development Workflow
+The project follows an optimized pipeline to ensure high performance on Meta Quest 2:
+1.  3D Modeling (Blender): Creation of low-poly assets to reduce computational load.
 
-<p align="center">
-  <img src="Images/brain_sx.png" alt="Labirinto dell'emisfero sinistro" width="50%">
-</p>
+2. Texturing and Baking (Blender): Use of baking techniques to “bake” lighting and detail into textures. This allows the use of Unlit materials in Unity, reducing real-time rendering costs.
 
-## Caratteristiche Tecniche
+3.  Assembly and Logic (Unity):
+    *   Use of the Universal Render Pipeline (URP), optimized for multi-platform graphics and VR rendering.
+    *   Integration of the Meta XR SDK (Core, Interaction, and Audio) to manage tracking, interactions, and spatial audio.
 
-### Workflow di Sviluppo
-Il progetto segue una pipeline ottimizzata per garantire performance elevate su Meta Quest 2:
-1.  **Modellazione 3D (Blender)**: Creazione di asset *low-poly* per ridurre il carico computazionale.
-2.  **Texturing e Baking (Blender)**: Utilizzo di tecniche di *baking* per "cuocere" l'illuminazione e i dettagli sulle texture. Questo permette di usare materiali `Unlit` in Unity, abbattendo i costi di rendering in tempo reale.
-3.  **Assemblaggio e Logica (Unity)**:
-    *   Utilizzo della **Universal Render Pipeline (URP)**, ottimizzata per la grafica su piattaforme multiple e per il rendering VR.
-    *   Integrazione dei **Meta XR SDK** (Core, Interaction e Audio) per gestire il tracking, le interazioni e l'audio spaziale.
-4.  **Testing e Deploy**:
-    *   **Meta Quest Link** per la prototipazione rapida e il test in tempo reale dall'editor.
-    *   **Meta Quest Developer Hub (MQDH)** per il deploy delle build `.apk` e il monitoraggio delle performance direttamente sul visore.
+4.  Testing and Deployment:
+     *   Meta Quest Link for rapid prototyping and real-time testing from the editor.
+     *   Meta Quest Developer Hub (MQDH) for deploying .apk builds and monitoring performance directly on the headset.
 
-### Ottimizzazioni Implementate
-*   **Modellazione Low-Poly**: Mantenimento di un basso numero di poligoni per ogni modello.
-*   **Texture Baking**: L'illuminazione globale, le ombre e i dettagli vengono pre-calcolati e salvati in un'unica texture map, riducendo drasticamente il carico sulla GPU.
-*   **Level of Detail (LOD)**: La complessità degli oggetti viene ridotta dinamicamente in base alla loro distanza dalla telecamera.
-*   **Materiali URP Ottimizzati**: Utilizzo di materiali `Unlit` e `Lit` della URP, disabilitando le feature grafiche più onerose.
 
-## Funzionalità VR
+### Implemented Optimizations
+*   Low-Poly Modeling: Keeping a low polygon count for each model.
+*   Texture Baking: Global illumination, shadows, and details are precomputed and saved in a single texture map, drastically reducing GPU load.
+*   Level of Detail (LOD): Object complexity is dynamically reduced based on their distance from the camera.
+*   Optimized URP Materials: Use of Unlit and Lit URP materials, disabling the most performance-heavy graphical features.
 
-L'esperienza è stata costruita attorno alle meccaniche della VR per massimizzare l'immersione.
+## VR Features
+The experience is built around VR mechanics to maximize immersion.
 
-### Navigazione
-Per ridurre il rischio di *motion sickness*, sono state implementate due modalità di locomozione:
-*   **Teletrasporto**: Permette di spostarsi istantaneamente puntando una destinazione. È la soluzione più confortevole per prevenire la cinetosi.
-*   **Movimento Continuo (Smooth Locomotion)**: Offre un'esperienza più fluida e immersiva, gestita tramite lo stick analogico dei controller.
+### Navigation
+*   To reduce the risk of motion sickness, two locomotion modes have been implemented:
+*   Teleportation: Allows instant movement by pointing at a destination. This is the most comfortable solution to prevent motion sickness.
+*   Continuous Movement (Smooth Locomotion): Provides a smoother and more immersive experience, controlled via the controller’s analog stick.
 
-### Interazione
-L'utente può interagire con l'ambiente circostante in due modi:
-*   **Interazione diretta**: Afferrando e manipolando oggetti vicini.
-*   **Interazione a raggio**: Utilizzando un raggio proiettato dal controller per attivare oggetti a distanza, come l'apertura di un forziere.
+### Interaction
+*   The user can interact with the surrounding environment in two ways:
+*   Direct Interaction: Grabbing and manipulating nearby objects.
+*   Ray Interaction: Using a ray projected from the controller to activate objects at a distance, such as opening a chest.
 
-![Asset interagibile](Images/treasure.png)
+![Interactable Asset](Images/treasure.png)
 
-## Elementi di Gioco
+## Game Elements
+*   Hemispheric Mazes: The scene is divided into two mazes representing the right and left hemispheres of the brain.
+*   Teleportation Portal: A portal allows the player to move between the two hemispheres, reflecting brain connectivity.
+*   Trigger Events: Passing through invisible areas activates scripted events such as ambisonic sounds, shadow appearances, and particle systems (e.g., fog).
 
-*   **Labirinti Emisferici**: La scena è divisa in due labirinti che rappresentano l'emisfero destro e sinistro del cervello.
-*   **Portale di Teletrasporto**: Un portale permette al giocatore di spostarsi tra i due emisferi, rispecchiando la connettività cerebrale.
-*   **Eventi Trigger**: Il passaggio del giocatore in aree invisibili attiva eventi scriptati come suoni ambisonici, apparizioni di ombre e l'attivazione di sistemi di particelle (es. nebbia).
-
-| ![Nebbia nel gioco](Images/fog.png) | ![Ombra spaventosa](Images/scaring_figure.png) | ![Portale](Images/portal.png) |
+| ![Fog in Game](Images/fog.png) | ![Scary shadow](Images/scaring_figure.png) | ![Portal](Images/portal.png) |
 | :---: | :---: | :---: |
-| Nebbia volumetrica per ostacolare la vista. | Un'ombra appare per spaventare il giocatore. | Portale per il passaggio tra emisferi. |
+| Volumetric fog to obstruct vision. | A shadow appears to scare the player. | Portal for moving between hemispheres. |
 
-## Sviluppi Futuri
-
-Il prossimo passo cruciale è la compilazione della build finale (`.apk`) e la sua installazione come applicazione *standalone* sul Meta Quest 2 tramite il MQDH. Questo permetterà di:
-
-*   Valutare le performance reali dell'applicazione in un ambiente nativo.
-*   Monitorare metriche come FPS e utilizzo di CPU/GPU senza l'ausilio del PC.
-*   Validare l'efficacia dell'intera pipeline di sviluppo ottimizzata.
+## Future Developments
+The next crucial step is compiling the final build (.apk) and installing it as a standalone application on the Meta Quest 2 via MQDH. This will allow:
+*   Evaluating the application’s real performance in a native environment.
+*   onitoring metrics such as FPS and CPU/GPU usage without a PC.
+*   Validating the effectiveness of the entire optimized development pipeline.
 
 ## Autore
-
 *   **Federica Di Giaimo**
