@@ -1,15 +1,25 @@
-# Unity .gitignore - Updated for Unity 2023+ and VR projects
+# Unity .gitignore - Complete for Unity 2023+ and VR projects
 # Based on https://github.com/github/gitignore/blob/main/Unity.gitignore
 
+# -----------------------------
 # Temporary files
+# -----------------------------
 .utmp/
 [Tt]emp/
 [Oo]bj/
+*~
+*.tmp
 
+# -----------------------------
 # Library folder (local cache, regenerate on each machine)
+# -----------------------------
 [Ll]ibrary/
+Library/ShaderCache/
+Library/GI/
 
+# -----------------------------
 # Builds
+# -----------------------------
 [Bb]uild/
 [Bb]uilds/
 *.apk
@@ -18,41 +28,56 @@
 *.unitypackage
 *.unitypackage.meta
 
+# -----------------------------
 # Logs
+# -----------------------------
 [Ll]ogs/
 *.log
+sysinfo.txt
+mono_crash.*
 
-# Memory captures
+# -----------------------------
+# Memory captures and recordings
+# -----------------------------
 /[Mm]emoryCaptures/
-
-# Recordings
 /[Rr]ecordings/
 
+# -----------------------------
 # Blender temp files
+# -----------------------------
 *.blend1
 *.blend1.meta
 
-# Asset Store Tools plugin (optional)
+# -----------------------------
+# Asset Store Tools plugin
+# -----------------------------
 /[Aa]ssets/AssetStoreTools*
 
+# -----------------------------
 # JetBrains Rider / Rider plugin
+# -----------------------------
 /[Aa]ssets/Plugins/Editor/JetBrains*
 *.DotSettings.user
 
+# -----------------------------
 # Visual Studio cache
+# -----------------------------
 .vs/
 
+# -----------------------------
 # Gradle
+# -----------------------------
 .gradle/
 
+# -----------------------------
 # Auto-generated solution/project files
+# -----------------------------
 ExportedObj/
 .consulo/
 *.csproj
 *.unityproj
 *.sln
 *.suo
-*.tmp
 *.user
 *.userprefs
 *.pidb
@@ -63,39 +88,44 @@ ExportedObj/
 *.opendb
 *.VC.db
 
-# Unity generated meta files
-*.pidb.meta
-*.pdb.meta
-*.mdb.meta
-
-# Crash reports
-sysinfo.txt
-mono_crash.*
-
+# -----------------------------
 # Crashlytics
+# -----------------------------
 crashlytics-build.properties
 
+# -----------------------------
 # TestRunner generated files
+# -----------------------------
 InitTestScene*.unity*
 
+# -----------------------------
 # Addressables default ignores
+# -----------------------------
 /ServerData
 /[Aa]ssets/StreamingAssets/aa*
 /[Aa]ssets/AddressableAssetsData/link.xml*
 /[Aa]ssets/Addressables_Temp*
 /[Aa]ssets/AddressableAssetsData/*/*.bin*
 
+# -----------------------------
 # Visual Scripting auto-generated files
+# -----------------------------
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db.meta
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property\ Providers
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property\ Providers.meta
 
+# -----------------------------
 # Auto-generated scenes by play mode tests
+# -----------------------------
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
+# -----------------------------
 # Local user settings (machine-specific)
+# -----------------------------
 UserSettings/
 
-# Optional: exclude cache of VR SDKs (Meta/Quest specific)
+# -----------------------------
+# Optional: cache of VR SDKs (Meta/Quest specific)
+# -----------------------------
 /[Aa]ssets/Plugins/MetaXR/Temp/
